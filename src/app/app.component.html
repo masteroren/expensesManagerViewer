@@ -1,3 +1,49 @@
-<h1>
-  {{title}}
-</h1>
+<div>
+  <h1>{{title}}</h1>
+
+  <div style="float: left">
+    <table>
+      <tr>
+        <th>עובד</th>
+        <th>סוג</th>
+        <th>סכום</th>
+        <th>תאריך חשבונית</th>
+        <th>תאריך הגשה</th>
+        <th>צילום</th>
+      </tr>
+      <tr *ngFor="let invoice of invoices">
+        <td>{{invoice.user}}</td>
+        <td>{{invoice.category}}</td>
+        <td>{{invoice.amount}}</td>
+        <td>{{invoice.invoiceDate}}</td>
+        <td>{{invoice.date}}</td>
+        <td><img width="50" height="50" [src]="'data:image/jpg;base64,' + invoice.picture"
+                 (click)="selectedImageData = invoice.picture"/></td>
+      </tr>
+    </table>
+  </div>
+
+  <!--<div style="float: left">-->
+  <!--<div *ngFor="let invoice of invoices">-->
+  <!--<label>-->
+  <!--<span><B>User:</B></span>-->
+  <!--<span>{{invoice.user}}</span>-->
+  <!--</label>-->
+  <!--<label>-->
+  <!--<span><B>Category:</B></span>-->
+  <!--<span>{{invoice.category}}</span>-->
+  <!--</label>-->
+  <!--<label>-->
+  <!--<span><B>Amount:</B></span>-->
+  <!--<span>{{invoice.amount}}</span>-->
+  <!--</label>-->
+  <!--<label>-->
+  <!--<span><B>Image:</B></span>-->
+  <!--<img width="50" height="50" [src]="'data:image/jpg;base64,' + invoice.picture" (click)="selectedImageData = invoice.picture" />-->
+  <!--</label>-->
+  <!--</div>-->
+  <!--</div>-->
+  <div style="float: right">
+    <img width="550" height="550" [src]="'data:image/jpg;base64,' + selectedImageData"/>
+  </div>
+</div>
