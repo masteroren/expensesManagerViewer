@@ -13,9 +13,16 @@ export class AppComponent {
   title = 'הוצאות';
   invoices: IInvoice[];
 
+  // _domSanitizer.bypassSecurityTrustUrl('data:image/jpg;base64,' + invoice.image)
+
   constructor(private httpService: HttpService, private _domSanitizer: DomSanitizer) {
     httpService.invoices().subscribe((response: IInvoice[]) => {
       this.invoices = response;
     })
   }
+
+  getImage(imageData){
+    return this._domSanitizer.bypassSecurityTrustUrl('data:image/jpg;base64,' + imageData);
+  }
+
 }
