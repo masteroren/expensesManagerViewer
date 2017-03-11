@@ -12,38 +12,17 @@
         <th>צילום</th>
       </tr>
       <tr *ngFor="let invoice of invoices">
-        <td>{{invoice.user}}</td>
-        <td>{{invoice.category}}</td>
+        <td>{{invoice.empName}}</td>
+        <td>{{invoice.type}}</td>
         <td>{{invoice.amount}}</td>
         <td>{{invoice.invoiceDate}}</td>
-        <td>{{invoice.date}}</td>
-        <td><img width="50" height="50" [src]="'data:image/jpg;base64,' + invoice.picture"
-                 (click)="selectedImageData = invoice.picture"/></td>
+        <td>{{invoice.createDate}}</td>
+        <td><img width="50" height="50" [src]="_domSanitizer.bypassSecurityTrustUrl('data:image/jpg;base64,' + invoice.image)"
+                 (click)="selectedImageData = invoice.image"/></td>
       </tr>
     </table>
   </div>
-
-  <!--<div style="float: left">-->
-  <!--<div *ngFor="let invoice of invoices">-->
-  <!--<label>-->
-  <!--<span><B>User:</B></span>-->
-  <!--<span>{{invoice.user}}</span>-->
-  <!--</label>-->
-  <!--<label>-->
-  <!--<span><B>Category:</B></span>-->
-  <!--<span>{{invoice.category}}</span>-->
-  <!--</label>-->
-  <!--<label>-->
-  <!--<span><B>Amount:</B></span>-->
-  <!--<span>{{invoice.amount}}</span>-->
-  <!--</label>-->
-  <!--<label>-->
-  <!--<span><B>Image:</B></span>-->
-  <!--<img width="50" height="50" [src]="'data:image/jpg;base64,' + invoice.picture" (click)="selectedImageData = invoice.picture" />-->
-  <!--</label>-->
-  <!--</div>-->
-  <!--</div>-->
   <div style="float: right">
-    <img width="550" height="550" [src]="'data:image/jpg;base64,' + selectedImageData"/>
+    <img width="550" height="550" [src]="_domSanitizer.bypassSecurityTrustUrl('data:image/jpg;base64,' + selectedImageData)"/>
   </div>
 </div>
