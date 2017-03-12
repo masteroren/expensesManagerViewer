@@ -1,6 +1,6 @@
 export interface IInvoice{
   empId?: number;
-  empName: string;
+  employeeName: string;
   type: string;
   amount: number;
   invoiceDate: string;
