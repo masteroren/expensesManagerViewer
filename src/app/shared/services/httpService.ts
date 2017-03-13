@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {Http} from "@angular/http";
 import "rxjs/add/operator/map";
 
-const BASE_URL = 'http://192.168.10.155:3000/';
+const BASE_URL = 'http://192.168.10.155:8080/';
 // const BASE_URL = 'http://192.168.1.2:8080/';
 // const BASE_URL = 'http://192.168.30.6/ExpensesRest/';
 // const BASE_URL = 'http://expensesrest.orenwebtest.com/';
