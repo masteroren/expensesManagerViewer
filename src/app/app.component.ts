@@ -23,4 +23,8 @@ export class AppComponent {
     return this._domSanitizer.bypassSecurityTrustUrl('data:image/jpg;base64,' + imageData);
   }
 
+  convertDate(number){
+    return new Date(number).toLocaleDateString();
+  }
+
 }

@@ -15,8 +15,8 @@
         <td>{{invoice.employeeName}}</td>
         <td>{{invoice.type}}</td>
         <td>{{invoice.amount}}</td>
-        <td>{{invoice.invoiceDate}}</td>
-        <td>{{invoice.createDate}}</td>
+        <td>{{convertDate(invoice.invoiceDate)}}</td>
+        <td>{{convertDate(invoice.createDate)}}</td>
         <td><img width="50" height="50" [src]="getImage(invoice.image)"
                  (click)="selectedImageData = invoice.image"/></td>
       </tr>
