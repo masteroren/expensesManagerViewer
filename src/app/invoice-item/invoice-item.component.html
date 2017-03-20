@@ -1,0 +1,41 @@
+<div class="invoice-details">
+  <div>
+    <div>
+      <label>
+        <span>עובד</span>
+        {{invoice.employeeName}}
+      </label>
+    </div>
+    <div>
+      <label>
+        <span>סוג</span>
+        {{invoice.type}}
+      </label>
+    </div>
+    <div>
+      <label>
+        <span>סכום</span>
+        {{invoice.amount}}
+      </label>
+    </div>
+    <div>
+      <label>
+        <span>תאריך חשבונית</span>
+        {{convertDate(invoice.invoiceDate)}}
+      </label>
+    </div>
+    <div>
+      <label>
+        <span>תאריך הגשה</span>
+        {{convertDate(invoice.createDate)}}
+      </label>
+    </div>
+  </div>
+  <div class="invoice-image">
+    <label>
+      <div>צילום</div>
+      <img [src]="getImage(invoice.image)"
+           (click)="onImageClick(invoice.image)"/>
+    </label>
+  </div>
+</div>

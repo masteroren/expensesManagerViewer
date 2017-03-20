@@ -1,28 +1,22 @@
-<div>
+<div class="invoices-viewer">
   <h1>{{title}}</h1>
 
-  <div style="float: left">
-    <table>
-      <tr>
-        <th>עובד</th>
-        <th>סוג</th>
-        <th>סכום</th>
-        <th>תאריך חשבונית</th>
-        <th>תאריך הגשה</th>
-        <th>צילום</th>
-      </tr>
-      <tr *ngFor="let invoice of invoices">
-        <td>{{invoice.employeeName}}</td>
-        <td>{{invoice.type}}</td>
-        <td>{{invoice.amount}}</td>
-        <td>{{convertDate(invoice.invoiceDate)}}</td>
-        <td>{{convertDate(invoice.createDate)}}</td>
-        <td><img width="50" height="50" [src]="getImage(invoice.image)"
-                 (click)="selectedImageData = invoice.image"/></td>
-      </tr>
-    </table>
+  <div class="invoices-filter">
+    <datepicker [(ngModel)]="dt" minMode="month" maxMode="month" datepickerMode="month"
+                (selectionDone)="onDateChanged($event)"></datepicker>
+    <button class="btn-filter" (click)="filter()">Show</button>
   </div>
-  <div style="float: right">
-    <img width="550" height="550" [src]="getImage(selectedImageData)"/>
+
+  <div class="invoices-container">
+    <div class="invoices-list">
+      <ul>
+        <li *ngFor="let invoice of invoices | invoiceFilter: {month: month, year: year}">
+          <invoice-item [invoice]="invoice" (onImageSelect)="onImageSelect($event)"></invoice-item>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <img width="550" height="550" [src]="imageSrc"/>
+    </div>
   </div>
 </div>

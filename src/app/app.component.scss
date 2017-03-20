@@ -1,0 +1,37 @@
+.invoices-viewer {
+  direction: rtl;
+
+  .invoices-filter{
+    display: flex;
+
+    .btn-filter{
+      margin-right: 10px;
+      height: 50px;
+    }
+  }
+
+  .invoices-container {
+    display: flex;
+    justify-content: space-between;
+
+    .invoices-list {
+      width: 55%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      height: 550px;
+
+      ul {
+        list-style-type: none;
+        width: 100%;
+
+        li {
+          width: 305px;
+          float: right;
+        }
+      }
+    }
+
+
+  }
+}
+
