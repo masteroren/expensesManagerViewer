@@ -2,15 +2,25 @@
   <h1>{{title}}</h1>
 
   <div class="invoices-filter">
-    <datepicker [(ngModel)]="dt" minMode="month" maxMode="month" datepickerMode="month"
+    <datepicker [(ngModel)]="dt" minMode="month" maxMode="year" datepickerMode="month"
                 (selectionDone)="onDateChanged($event)"></datepicker>
-    <button class="btn-filter" (click)="filter()">Show</button>
+
+    <div class="filter-types">
+      <label>
+        <input name="filterType" type="radio" value="0" [(ngModel)]="filterType">
+        <span>תאריך הגשה</span>
+      </label>
+      <label>
+        <input name="filterType" type="radio" value="1" [(ngModel)]="filterType">
+        <span>תאריך חשבונית</span>
+      </label>
+    </div>
   </div>
 
   <div class="invoices-container">
     <div class="invoices-list">
       <ul>
-        <li *ngFor="let invoice of invoices | invoiceFilter: {month: month, year: year}">
+        <li *ngFor="let invoice of invoices | invoiceFilter: {month: month, year: year, type: filterType}">
           <invoice-item [invoice]="invoice" (onImageSelect)="onImageSelect($event)"></invoice-item>
         </li>
       </ul>
