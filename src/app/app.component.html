@@ -7,7 +7,7 @@
 
     <div class="filter-types">
       <label>
-        <input name="filterType" type="radio" value="0" [(ngModel)]="filterType">
+        <input name="filterType" type="radio" value="0" [(ngModel)]="filterType" >
         <span>תאריך הגשה</span>
       </label>
       <label>
@@ -19,14 +19,49 @@
 
   <div class="invoices-container">
     <div class="invoices-list">
-      <ul>
-        <li *ngFor="let invoice of invoices | invoiceFilter: {month: month, year: year, type: filterType}">
-          <invoice-item [invoice]="invoice" (onImageSelect)="onImageSelect($event)"></invoice-item>
-        </li>
-      </ul>
+
+      <table border="1">
+        <tr>
+          <th>מספר עובד</th>
+          <th>שם עובד</th>
+          <th>סוג</th>
+          <th>סכום</th>
+          <th>תאריך הגשה</th>
+          <th>תאריך חשבונית</th>
+          <th>צילום</th>
+          <th>פעולות</th>
+        </tr>
+        <tr *ngFor="let invoice of invoices | invoiceFilter: {month: month, year: year, type: filterType}">
+          <td class="center">{{invoice.empId}}</td>
+          <td>{{invoice.employeeName}}</td>
+          <td>{{invoice.type}}</td>
+          <td class="center">{{invoice.amount}}</td>
+          <td class="center">{{invoice._InvoiceDate}}</td>
+          <td class="center">{{invoice._InvoiceCreate}}</td>
+          <td class="center">
+            <img [src]="getImage(invoice.image)">
+          </td>
+          <td class="center">
+            <button style="opacity: 0.5" disabled>העתק</button>
+          </td>
+        </tr>
+      </table>
+
+
+      <!--<div class="container">-->
+        <!--<div class="row" *ngFor="let invoice of invoices | invoiceFilter: {month: month, year: year, type: filterType}">-->
+          <!--<invoice-item [invoice]="invoice" (onImageSelect)="onImageSelect($event)"></invoice-item>-->
+        <!--</div>-->
+      <!--</div>-->
+
+      <!--<ul>-->
+      <!--<li *ngFor="let invoice of invoices | invoiceFilter: {month: month, year: year, type: filterType}">-->
+      <!--<invoice-item [invoice]="invoice" (onImageSelect)="onImageSelect($event)"></invoice-item>-->
+      <!--</li>-->
+      <!--</ul>-->
     </div>
-    <div>
-      <img width="550" height="550" [src]="imageSrc"/>
-    </div>
+    <!--<div>-->
+    <!--<img width="550" height="550" [src]="imageSrc"/>-->
+    <!--</div>-->
   </div>
 </div>

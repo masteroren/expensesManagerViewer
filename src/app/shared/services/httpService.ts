@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {Http} from "@angular/http";
 import "rxjs/add/operator/map";
 
-const BASE_URL = 'http://192.168.10.155:8080/';
+const BASE_URL = 'http://212.143.128.217:9200/';
 
 @Injectable()
 export class HttpService {

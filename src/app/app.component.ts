@@ -26,8 +26,8 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.httpService.invoices().subscribe((response: IInvoice[]) => {
       response.forEach((item: IInvoice) => {
-        item._InvoiceDate = new Date(item.createDate);
-        item._InvoiceCreate = new Date(item.invoiceDate);
+        item._InvoiceDate = new Date(item.createDate).toLocaleDateString();
+        item._InvoiceCreate = new Date(item.invoiceDate).toLocaleDateString();
       });
       this.invoices = response;
     });
@@ -36,6 +36,10 @@ export class AppComponent implements OnInit {
   onDateChanged(e) {
     this.year = new Date(e).getFullYear();
     this.month = new Date(e).getMonth() + 1;
+  }
+
+  getImage(imageData: string){
+    return this._domSanitizer.bypassSecurityTrustUrl('data:image/jpg;base64,' + imageData);
   }
 
   onImageSelect(imageData: string) {
