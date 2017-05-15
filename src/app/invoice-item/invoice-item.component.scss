@@ -1,29 +1,29 @@
 .invoice-details {
-  display: flex;
-  border: 1px solid black;
-  margin: 5px;
-  padding: 10px;
-  border-radius: 10px;
+  //display: flex;
+  //border: 1px solid black;
+  //margin: 5px;
+  //padding: 10px;
+  //border-radius: 10px;
 
-label {
-span {
-  font-weight: bold;
-  color: orange;
-}
-}
+  label {
+    span {
+      font-weight: bold;
+      color: orange;
+    }
+  }
 
-.invoice-image {
-  padding: 0px 10px 10px 10px;
+  .invoice-image {
+    padding: 0px 10px 10px 10px;
 
-div {
-  text-align: center;
-  color: orange;
-  font-weight: bold;
-}
+    div {
+      text-align: center;
+      color: orange;
+      font-weight: bold;
+    }
 
-img {
-  width: 100px;
-  height: 100px;
-}
-}
+    img {
+      width: 100px;
+      height: 100px;
+    }
+  }
 }
