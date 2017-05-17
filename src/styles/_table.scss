@@ -1,0 +1,132 @@
+
+.ui-datatable table {
+  font-family: 'Rubik', sans-serif !important;
+  thead {
+    tr {
+      @extend .no-border;
+      th {
+        &.ui-state-default {
+          @extend .middle;
+          @extend .no-border;
+          height: 46px;
+          opacity: 0.8;
+          background-color: #d9e1fa !important;
+          color: #2b2f39 !important;
+          text-align: right !important;
+          &:focus {
+            outline: none;
+          }
+          span {
+            font-size: 14px;
+            font-weight: 700;
+          }
+        }
+        &.ui-sortable-column {
+          .ui-sortable-column-icon {
+            &.fa-sort {
+              display: none;
+              &.fa-sort-asc, &.fa-sort-desc {
+                display: inline-block;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  tbody {
+    @extend .no-border;
+    tr.ui-widget-content {
+      height: 34px;
+      @extend .no-border;
+      &:nth-child(odd) {
+        background-color: #fff;
+      }
+      &:nth-child(even) {
+        background-color: #eff3fe;
+      }
+      &.ui-state-highlight {
+        background-color: #596583 !important;
+        border-bottom: 1px solid #fff !important;
+        span {
+          color: #fff;
+        }
+      }
+      td {
+        @extend .no-border;
+        @extend .middle;
+        span {
+          color: #494a4d;
+          font-size: 13px;
+        }
+
+      }
+    }
+  }
+}
+
+.ui-datatable {
+  .ui-datatable-header {
+    @extend .no-border;
+    background: none !important;
+    padding: 10px 0 !important;
+    .ui-multiselect {
+      background-color: #fff;
+      &.ui-state-focus {
+        @include focus;
+      }
+      &.ui-state-hover {
+        @include focus;
+      }
+      &:focus {
+        @include focus;
+      }
+      .ui-multiselect-label-container {
+        direction: rtl;
+        padding: 0 0 0 10px !important;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        .ui-multiselect-label {
+          padding: 0;
+          &.ui-state-hover {
+            background-color: inherit;
+          }
+          &.ui-state-focus {
+            background-color: inherit;
+          }
+        }
+      }
+      .ui-multiselect-trigger {
+        background-color: inherit;
+        &.ui-state-focus {
+          span.fa-caret-down {
+            &:before {
+              transform: rotate(180deg);
+            }
+          }
+        }
+        &.ui-state-default {
+          span.fa-caret-down {
+            &:before {
+              transition: all 0.3s linear;
+            }
+          }
+        }
+      }
+      .ui-multiselect-panel {
+        .ui-multiselect-items-wrapper {
+          direction: ltr;
+        }
+      }
+    }
+  }
+  &.ui-datatable-scrollable {
+    .ui-datatable-scrollable-header {
+      .ui-datatable-scrollable-header-box {
+        margin: 0 !important;
+      }
+    }
+  }
+
+}
+

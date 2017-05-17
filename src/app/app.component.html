@@ -17,51 +17,31 @@
     </div>
   </div>
 
+  <div class="ui-space-regular">
+    <button class="primary-btn" (click)="exportToCsv(invoicesTable)">העתק את השורות שנבחרו</button>
+  </div>
+
   <div class="invoices-container">
     <div class="invoices-list">
-
-      <table border="1">
-        <tr>
-          <th>מספר עובד</th>
-          <th>שם עובד</th>
-          <th>סוג</th>
-          <th>סכום</th>
-          <th>תאריך הגשה</th>
-          <th>תאריך חשבונית</th>
-          <th>צילום</th>
-          <th>פעולות</th>
-        </tr>
-        <tr *ngFor="let invoice of invoices | invoiceFilter: {month: month, year: year, type: filterType}">
-          <td class="center">{{invoice.empId}}</td>
-          <td>{{invoice.employeeName}}</td>
-          <td>{{invoice.type}}</td>
-          <td class="center">{{invoice.amount}}</td>
-          <td class="center">{{invoice._InvoiceDate}}</td>
-          <td class="center">{{invoice._InvoiceCreate}}</td>
-          <td class="center">
-            <img [src]="getImage(invoice.image)">
-          </td>
-          <td class="center">
-            <button style="opacity: 0.5" disabled>העתק</button>
-          </td>
-        </tr>
-      </table>
-
-
-      <!--<div class="container">-->
-        <!--<div class="row" *ngFor="let invoice of invoices | invoiceFilter: {month: month, year: year, type: filterType}">-->
-          <!--<invoice-item [invoice]="invoice" (onImageSelect)="onImageSelect($event)"></invoice-item>-->
-        <!--</div>-->
-      <!--</div>-->
-
-      <!--<ul>-->
-      <!--<li *ngFor="let invoice of invoices | invoiceFilter: {month: month, year: year, type: filterType}">-->
-      <!--<invoice-item [invoice]="invoice" (onImageSelect)="onImageSelect($event)"></invoice-item>-->
-      <!--</li>-->
-      <!--</ul>-->
+      <p-dataTable [value]="invoices | invoiceFilter: {month: month, year: year, type: filterType}"
+                   scrollable="false"  class="details-table stretch-width" #invoicesTable [(selection)]="selectedInvoices">
+        <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
+        <p-column field="empId" header="מספר עובד" [sortable]="true"></p-column>
+        <p-column field="employeeName" header="שם עובד" [sortable]="true"></p-column>
+        <p-column field="type" header="סוג" [sortable]="true"></p-column>
+        <p-column field="amount" header="סכום" [sortable]="true"></p-column>
+        <p-column field="_InvoiceDate" header="תאריך הגשה" [sortable]="true"></p-column>
+        <p-column field="_InvoiceCreate" header="תאריך חשבונית" [sortable]="true"></p-column>
+        <p-column field="image" header="צילום" [sortable]="true">
+          <template let-col let-invoice="rowData" pTemplate="body">
+            <img #img class="pointer" [src]="getImage(invoice[col.field])" (click)="showImageDialog(img.src)">
+          </template>
+        </p-column>
+      </p-dataTable>
     </div>
-    <!--<div>-->
-    <!--<img width="550" height="550" [src]="imageSrc"/>-->
-    <!--</div>-->
+
+    <p-dialog header="Title" [(visible)]="showImageDialogFlag">
+      <img [src]="imageContentToShow" height="500" width="500">
+    </p-dialog>
   </div>
 </div>
