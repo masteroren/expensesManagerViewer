@@ -76,7 +76,6 @@ export class AppComponent implements OnInit {
   }
 
   showImageDialog(imgSrc){
-    console.log(imgSrc);
     this.imageContentToShow = imgSrc;
     this.showImageDialogFlag = true;
   }

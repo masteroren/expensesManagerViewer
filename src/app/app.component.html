@@ -2,7 +2,7 @@
   <h1>{{title}}</h1>
 
   <div class="invoices-filter">
-    <datepicker [(ngModel)]="dt" minMode="month" maxMode="year" datepickerMode="month"
+    <datepicker class="invoice-date-picker" [(ngModel)]="dt" minMode="month" maxMode="year" datepickerMode="month"
                 (selectionDone)="onDateChanged($event)"></datepicker>
 
     <div class="filter-types">
