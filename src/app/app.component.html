@@ -7,7 +7,7 @@
 
     <div class="filter-types">
       <label>
-        <input name="filterType" type="radio" value="0" [(ngModel)]="filterType" >
+        <input name="filterType" type="radio" value="0" [(ngModel)]="filterType">
         <span>תאריך הגשה</span>
       </label>
       <label>
@@ -18,14 +18,13 @@
   </div>
 
   <div class="ui-space-regular">
-    <button class="primary-btn" (click)="exportToCsv(invoicesTable)">העתק את השורות שנבחרו</button>
+    <button class="primary-btn" (click)="exportToCsv(invoicesTable)">ייצוא לאקסל</button>
   </div>
 
-  <div class="invoices-container">
+  <div class="invoices-container ui-space-r-large">
     <div class="invoices-list">
       <p-dataTable [value]="invoices | invoiceFilter: {month: month, year: year, type: filterType}"
-                   scrollable="false"  class="details-table stretch-width" #invoicesTable [(selection)]="selectedInvoices">
-        <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
+                   scrollable="false" class="details-table stretch-width" #invoicesTable>
         <p-column field="empId" header="מספר עובד" [sortable]="true"></p-column>
         <p-column field="employeeName" header="שם עובד" [sortable]="true"></p-column>
         <p-column field="type" header="סוג" [sortable]="true"></p-column>

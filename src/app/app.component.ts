@@ -21,7 +21,6 @@ export class AppComponent implements OnInit {
   imageSrc: any;
   filterType: number;
   cols = [];
-  selectedInvoices = [];
   imageContentToShow;
   showImageDialogFlag = false;
 
@@ -64,8 +63,10 @@ export class AppComponent implements OnInit {
 
   exportToCsv(dataTable) {
     dataTable.exportFilename = "חשבוניות";
-
     let csv = this.processTableData(dataTable);
+    ;
+
+
     let link = document.createElement("a");
     link.setAttribute("href", "data:text/csv;charset=utf-8,%EF%BB%BF" + encodeURI(csv));
     link.setAttribute("download", dataTable.exportFilename + ".csv");
@@ -75,37 +76,81 @@ export class AppComponent implements OnInit {
 
   }
 
-  showImageDialog(imgSrc){
+  showImageDialog(imgSrc) {
     this.imageContentToShow = imgSrc;
     this.showImageDialogFlag = true;
   }
 
-  processTableData(dataTable){
-    let csv = '';
-    for (let i = 0; i < dataTable.columns.length; i++) {
-      let currentHeaderField = dataTable.columns[i].field;
-      if (currentHeaderField && currentHeaderField != 'image') {
-        csv += dataTable.columns[i].header || dataTable.columns[i].field;
-        if (i < 7) {
-          csv += dataTable.csvSeparator;
+  processTableData(dataTable) {
+    let csv = 'מספר עובד,שם עובד,סכום - חניה,סכום - כיבוד,סכום - אחר,סה"כ הוצאות,חודש הגשה,';
+
+    let invoiceArr = dataTable.value.sort(function (val1, val2) {
+      return val1.empId - val2.empId;
+    });
+
+    let invoiceCreationMonth = invoiceArr[0]._InvoiceDate.split('/')[0] + '/' + invoiceArr[0]._InvoiceDate.split('/')[2];
+
+    let currentEmp = {
+      empId: invoiceArr[0].empId,
+      employeeName: invoiceArr[0].employeeName,
+      parkingAmount: 0,
+      refreshmentsAmount: 0,
+      otherAmount: 0,
+      totalAmount: 0,
+      month: invoiceCreationMonth
+    };
+
+    let dataToExport = [];
+
+    invoiceArr.forEach(function (invoice, i) {
+
+      if (invoice.empId != currentEmp.empId) {
+        dataToExport.push(currentEmp);
+        currentEmp = {
+          empId: invoice.empId,
+          employeeName: invoice.employeeName,
+          parkingAmount: 0,
+          refreshmentsAmount: 0,
+          otherAmount: 0,
+          totalAmount: 0,
+          month: invoiceCreationMonth
         }
       }
-    }
+      switch (invoice.type) {
+        case "חנייה":
+          currentEmp.parkingAmount += invoice.amount;
+          break;
 
-    //body
-    this.selectedInvoices.forEach(function (record, i) {
+        case "אוכל":
+          currentEmp.refreshmentsAmount += invoice.amount;
+          break;
+
+        case "אחר":
+          currentEmp.otherAmount += invoice.amount;
+          break;
+
+        default:
+          currentEmp.otherAmount += invoice.amount;
+          break;
+      }
+
+      currentEmp.totalAmount += invoice.amount;
+
+      if (i == invoiceArr.length - 1) {
+        dataToExport.push(currentEmp);
+      }
+    });
+
+    dataToExport.forEach(function (emp) {
       csv += '\n';
-
-      for (let i_1 = 0; i_1 < dataTable.columns.length; i_1++) {
-        let currentColField = dataTable.columns[i_1].field;
-        if (currentColField && currentColField != 'image') {
-          csv += record[currentColField];
-          csv += dataTable.csvSeparator;
-        }
+      for (let key in emp) {
+        csv += emp[key];
+        csv += dataTable.csvSeparator;
       }
     });
 
     return csv;
   }
+
 
 }
