@@ -13,6 +13,7 @@
           background-color: #d9e1fa !important;
           color: #2b2f39 !important;
           text-align: right !important;
+          padding: .25em 1em;
           &:focus {
             outline: none;
           }
@@ -55,6 +56,7 @@
       td {
         @extend .no-border;
         @extend .middle;
+        padding: .25em 1em;
         span {
           color: #494a4d;
           font-size: 13px;
