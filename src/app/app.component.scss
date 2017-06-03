@@ -1,89 +1,18 @@
-.invoices-viewer {
-  direction: rtl;
-  padding: 10px;
-
-  .invoice-date-picker{
-    direction: ltr;
-  }
-  .invoices-filter {
-    display: flex;
-
-    .btn-filter {
-      margin-right: 10px;
-      height: 50px;
-    }
-
-    .filter-types {
-      display: flex;
-      flex-direction: column;
-      margin-right: 20px;
-    }
-  }
-
-  .invoices-container {
-    display: flex;
-    justify-content: space-between;
-
-    .invoices-list {
-      width: calc(100% - 100px);
-      overflow-y: auto;
-      overflow-x: hidden;
-      height: 550px;
-
-      img {
-        width: 50px;
-        padding: 10px;
-      }
-
-      table {
-        width: 100%;
-
-        tr {
-          th {
-            text-align: center;
-            background-color: lightslategray;
-            color: white;
-            border-color: black;
-          }
-          td {
-            padding-right: 10px;
-            &.center {
-              text-align: center;
-            }
-          }
-        }
+.expenses-manager {
+  nav {
+    width: 200px;
+    height: 50px;
+    background-color: #494a4d;
+    margin: auto;
+    a {
+      color: white;
+      font-family: OpenSans;
+      font-size: large;
+      font-weight: 700;
+      .active {
+        color: cornflowerblue;
       }
     }
+
   }
-}
-
-.details-table{
-  width: 1200px;
-  display: inline-block;
-}
-
-
-
-
-
-//general classes
-.no-border {
-  border: 0 !important;
-}
-
-
-.stretch-width{
-  width: 100%;
-}
-
-.relative{
-  position: relative;
-}
-
-.middle{
-  vertical-align: middle;
-}
-
-.in-block{
-  display: inline-block;
 }

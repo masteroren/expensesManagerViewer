@@ -1,8 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Http} from "@angular/http";
 import "rxjs/add/operator/map";
-
-const BASE_URL = 'http://212.143.128.217:9200/';
+import {IEmployee} from "../interfaces/IEmployee";
 
 @Injectable()
 export class HttpService {
@@ -11,6 +10,22 @@ export class HttpService {
   }
 
   invoices() {
-    return this.http.get(`${BASE_URL}invoices`).map(res => res.json());
+    return this.http.get(`api/invoices`).map(res => res.json());
+  }
+
+  employees() {
+    return this.http.get(`api/users`).map(res => res.json());
+  }
+
+  addEmployee(data: IEmployee) {
+    return this.http.post('api/user/add', data).map(res => res.json());
+  }
+
+  updateEmployee(data: IEmployee){
+    return this.http.post('api/user/update', data).map(res => res.json());
+  }
+
+  deleteEmployee(data: IEmployee){
+    return this.http.post('api/user/delete', data).map(res => res.json());
   }
 }

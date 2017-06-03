@@ -1,0 +1,47 @@
+<div class="employees">
+
+  <div [formGroup]="form" class="ui-layout employee" ui-layout-align="space-between center">
+    <label>
+      <div>מספר עובד<span class="astrik">*</span></div>
+      <input #firstName pInputText formControlName="id"/>
+    </label>
+    <label>
+      <div>שם פרטי<span class="astrik">*</span></div>
+      <input #lastName pInputText formControlName="firstName"/>
+    </label>
+    <label>
+      <div>שם משפחה<span class="astrik">*</span></div>
+      <input pInputText formControlName="lastName"/>
+    </label>
+    <label>
+      <div>כתובת</div>
+      <input pInputText formControlName="address"/>
+    </label>
+    <label>
+      <div>נייד</div>
+      <input pInputText formControlName="phone"/>
+    </label>
+    <label>
+      <div>מחלקה</div>
+      <p-dropdown [options]="departments" formControlName="department"></p-dropdown>
+    </label>
+
+    <button *ngIf="!editMode" pButton label="הוסף" (click)="addEmployee()"></button>
+    <button *ngIf="editMode" pButton label="עדכן" (click)="updateEmployee()"></button>
+    <button *ngIf="editMode" pButton label="מחק" (click)="deleteEmployee()"></button>
+    <button *ngIf="editMode" pButton label="בטל" (click)="returnToAdd()"></button>
+  </div>
+
+  <div class="employees-list">
+    <p-dataTable [value]="employees" scrollable="false" selectionMode="single" class="employees-table stretch-width"
+                 #employeesTable (onRowSelect)="onRowSelect($event)">
+      <p-column field="id" header="מספר"></p-column>
+      <p-column field="name" header="שם"></p-column>
+      <p-column field="firstName" header="שם פרטי"></p-column>
+      <p-column field="lastName" header="שם משפחה"></p-column>
+      <p-column field="address" header="כתובת"></p-column>
+      <p-column field="phone" header="נייד"></p-column>
+      <p-column field="department" header="מחלקה"></p-column>
+    </p-dataTable>
+  </div>
+</div>

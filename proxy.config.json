@@ -1,0 +1,11 @@
+{
+  "/api/*": {
+    "target": "http://212.143.128.217:9200",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api": ""
+    }
+  }
+}
