@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IInvoice} from "../shared/interfaces/IInvoice";
 import {HttpService} from "../shared/services/httpService";
 import {DomSanitizer} from "@angular/platform-browser";
@@ -25,14 +25,7 @@ export class InvoicesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.httpService.invoices().subscribe((response: IInvoice[]) => {
-      response.forEach((item: IInvoice) => {
-        item._InvoiceDate = new Date(item.createDate).toLocaleDateString();
-        item._InvoiceCreate = new Date(item.invoiceDate).toLocaleDateString();
-      });
-      this.invoices = response;
-      console.log(response);
-    });
+    this.getInvoices();
 
     this.cols = [
       {field: 'empId', header: 'מספר עובד'},
@@ -55,6 +48,26 @@ export class InvoicesComponent implements OnInit {
 
   onImageSelect(imageData: string) {
     this.imageSrc = this._domSanitizer.bypassSecurityTrustUrl('data:image/jpg;base64,' + imageData);
+  }
+
+  deleteInvoice(dataTable) {
+    dataTable.selection.forEach(item => {
+      this.httpService.deleteInvoice(item.id).subscribe(response => {
+        this.getInvoices();
+      }, error => {
+
+      })
+    })
+  }
+
+  getInvoices() {
+    this.httpService.invoices().subscribe((response: IInvoice[]) => {
+      response.forEach((item: IInvoice) => {
+        item._InvoiceDate = new Date(item.createDate).toLocaleDateString();
+        item._InvoiceCreate = new Date(item.invoiceDate).toLocaleDateString();
+      });
+      this.invoices = response;
+    });
   }
 
   exportToCsv(dataTable) {

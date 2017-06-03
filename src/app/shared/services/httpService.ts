@@ -21,11 +21,15 @@ export class HttpService {
     return this.http.post('api/user/add', data).map(res => res.json());
   }
 
-  updateEmployee(data: IEmployee){
+  updateEmployee(data: IEmployee) {
     return this.http.post('api/user/update', data).map(res => res.json());
   }
 
-  deleteEmployee(data: IEmployee){
+  deleteEmployee(data: IEmployee) {
     return this.http.post('api/user/delete', data).map(res => res.json());
+  }
+
+  deleteInvoice(id: number) {
+    return this.http.post('api/invoices/delete', {invoiceId: id}).map(res => res.json());
   }
 }
