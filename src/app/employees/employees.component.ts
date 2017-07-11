@@ -22,6 +22,9 @@ export class EmployeesComponent implements OnInit {
   },{
     label: 'Graphics',
     value: 'Graphics'
+  },{
+    label: 'Sales',
+    value: 'Sales'
   }];
 
   constructor(private httpService: HttpService, private fb: FormBuilder) {

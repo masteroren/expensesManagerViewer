@@ -9,7 +9,9 @@
     "lint": "tslint \"src/**/*.ts\" --project src/tsconfig.json --type-check && tslint \"e2e/**/*.ts\" --project e2e/tsconfig.json --type-check",
     "test": "ng test",
     "pree2e": "webdriver-manager update --standalone false --gecko false",
-    "e2e": "protractor"
+    "e2e": "protractor",
+    "build": "ng build --prod --environment=prod",
+    "start-prod": "ng serve --host http://192.168.10.156:8080"
   },
   "private": true,
   "dependencies": {
@@ -27,13 +29,13 @@
     "ts-helpers": "^1.1.1",
     "zone.js": "^0.7.2",
     "primeng": "^2.0.0",
-    "font-awesome": "^4.7.0"
+    "font-awesome": "^4.7.0",
+    "@angular/compiler-cli": "^2.3.1",
+    "angular-cli": "1.0.0-beta.26"
   },
   "devDependencies": {
-    "@angular/compiler-cli": "^2.3.1",
     "@types/jasmine": "2.5.38",
     "@types/node": "^6.0.42",
-    "angular-cli": "1.0.0-beta.26",
     "codelyzer": "~2.0.0-beta.1",
     "jasmine-core": "2.5.2",
     "jasmine-spec-reporter": "2.5.0",

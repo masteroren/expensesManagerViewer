@@ -10,15 +10,15 @@ import {DomSanitizer} from "@angular/platform-browser";
 })
 export class InvoicesComponent implements OnInit {
   title = 'הוצאות';
-  invoices: IInvoice[];
-  dt: Date = new Date();
-  year: number;
-  month: number;
-  imageSrc: any;
-  filterType: number;
-  cols = [];
-  imageContentToShow;
-  showImageDialogFlag = false;
+  private invoices: IInvoice[];
+  private dt: Date = new Date();
+  private year: number;
+  private month: number;
+  private imageSrc: any;
+  private filterType: number;
+  private cols = [];
+  private imageContentToShow;
+  private showImageDialogFlag = false;
 
   constructor(private httpService: HttpService, private _domSanitizer: DomSanitizer) {
 
