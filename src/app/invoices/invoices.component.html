@@ -2,8 +2,7 @@
   <h1>{{title}}</h1>
 
   <div class="invoices-filter">
-    <datepicker class="invoice-date-picker" [(ngModel)]="dt" minMode="month" maxMode="year" datepickerMode="month"
-                (selectionDone)="onDateChanged($event)"></datepicker>
+    <datepicker class="invoice-date-picker" [(ngModel)]="dt" minMode="month" maxMode="year" datepickerMode="month" (selectionDone)="onDateChanged($event)"></datepicker>
 
     <div class="filter-types">
       <label>
@@ -24,8 +23,8 @@
 
   <div class="invoices-container ui-space-r-large">
     <div class="invoices-list">
-      <p-dataTable [value]="invoices | invoiceFilter: {month: month, year: year, type: filterType}"
-                   scrollable="false" class="details-table stretch-width" #invoicesTable>
+      <p-dataTable [value]="invoices | invoiceFilter: {month: month, year: year, type: filterType}" scrollable="false" class="details-table stretch-width"
+        #invoicesTable>
         <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
         <p-column field="empId" header="מספר עובד" [sortable]="true"></p-column>
         <p-column field="employeeName" header="שם עובד" [sortable]="true"></p-column>
@@ -34,9 +33,9 @@
         <p-column field="_InvoiceDate" header="תאריך הגשה" [sortable]="true"></p-column>
         <p-column field="_InvoiceCreate" header="תאריך חשבונית" [sortable]="true"></p-column>
         <p-column field="image" header="צילום" [sortable]="true">
-          <template let-col let-invoice="rowData" pTemplate="body">
+          <ng-template let-col let-invoice="rowData" pTemplate="body">
             <img #img class="pointer" [src]="getImage(invoice[col.field])" (click)="showImageDialog(img.src)">
-          </template>
+          </ng-template>
         </p-column>
       </p-dataTable>
     </div>

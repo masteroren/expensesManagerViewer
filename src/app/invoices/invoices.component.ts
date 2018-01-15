@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {IInvoice} from "../shared/interfaces/IInvoice";
-import {HttpService} from "../shared/services/httpService";
-import {DomSanitizer} from "@angular/platform-browser";
+import { Component, OnInit } from '@angular/core';
+import { IInvoice } from "../shared/interfaces/IInvoice";
+import { HttpService } from "../shared/services/httpService";
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-invoices',
@@ -10,15 +10,15 @@ import {DomSanitizer} from "@angular/platform-browser";
 })
 export class InvoicesComponent implements OnInit {
   title = 'הוצאות';
-  private invoices: IInvoice[];
+  public invoices: IInvoice[];
   private dt: Date = new Date();
-  private year: number;
-  private month: number;
+  public year: number;
+  public month: number;
   private imageSrc: any;
-  private filterType: number;
+  public filterType: number;
   private cols = [];
-  private imageContentToShow;
-  private showImageDialogFlag = false;
+  public imageContentToShow;
+  public showImageDialogFlag = false;
 
   constructor(private httpService: HttpService, private _domSanitizer: DomSanitizer) {
 
@@ -28,12 +28,12 @@ export class InvoicesComponent implements OnInit {
     this.getInvoices();
 
     this.cols = [
-      {field: 'empId', header: 'מספר עובד'},
-      {field: 'employeeName', header: 'שם עובד'},
-      {field: 'type', header: 'סוג'},
-      {field: 'amount', header: 'סכום'},
-      {field: '_InvoiceDate', header: 'תאריך הגשה'},
-      {field: '_InvoiceCreate', header: 'תאריך חשבונית'}
+      { field: 'empId', header: 'מספר עובד' },
+      { field: 'employeeName', header: 'שם עובד' },
+      { field: 'type', header: 'סוג' },
+      { field: 'amount', header: 'סכום' },
+      { field: '_InvoiceDate', header: 'תאריך הגשה' },
+      { field: '_InvoiceCreate', header: 'תאריך חשבונית' }
     ]
   }
 
