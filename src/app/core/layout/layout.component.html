@@ -1,7 +1,7 @@
 <div class="expenses-manager">
-  <nav class="ui-layout" ui-layout-align="space-around center">
-    <a routerLink="invoices" routerLinkActive="active">חשבוניות/קבלות</a>
-    <a routerLink="employees" routerLinkActive="active">עובדים</a>
+  <nav>
+    <a [routerLink]="['/invoices']" routerLinkActive="active">חשבוניות/קבלות</a>
+    <a [routerLink]="['/employees']" routerLinkActive="active">עובדים</a>
   </nav>
   <div>
     <router-outlet></router-outlet>
