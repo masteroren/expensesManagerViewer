@@ -1,16 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import { DatepickerModule } from 'ng2-bootstrap';
-import { ButtonModule, DataTableModule, DialogModule, InputTextModule, DropdownModule } from 'primeng/primeng';
+import { HttpClientModule } from '@angular/common/http';
+import {
+  ButtonModule,
+  DataTableModule,
+  DialogModule,
+  InputTextModule,
+  DropdownModule,
+  CalendarModule
+} from 'primeng/primeng';
 import { AppComponent } from './app.component';
-import { InvoiceFilterPipe } from './pipes/invoice-filter.pipe';
-import { InvoiceItemComponent } from './invoice-item/invoice-item.component';
-import { InvoicesComponent } from './invoices/invoices.component';
 import { RouteModule } from "./app-routing.module";
 import { RouterModule } from "@angular/router";
-import { EmployeesComponent } from './employees/employees.component';
+import { InvoiceFilterPipe } from './shared/pipes/invoice-filter.pipe';
+import { InvoiceItemComponent } from './core/invoices/invoice-item/invoice-item.component';
+import { InvoicesComponent } from './core/invoices/invoices.component';
+import { EmployeesComponent } from './core/employees/employees.component';
+import { LoginComponent } from './core/login/login.component';
+import { LayoutComponent } from './core/layout/layout.component';
+import { LoginService } from './shared/services/login.service';
+import { LoggedInGuard } from './shared/guards/logged-in.guard';
 
 @NgModule({
   declarations: [
@@ -18,23 +28,25 @@ import { EmployeesComponent } from './employees/employees.component';
     InvoiceFilterPipe,
     InvoiceItemComponent,
     InvoicesComponent,
-    EmployeesComponent
+    EmployeesComponent,
+    LoginComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule,
+    HttpClientModule,
     RouterModule,
     RouteModule,
-    DatepickerModule.forRoot(),
     DataTableModule,
     DialogModule,
     InputTextModule,
     ButtonModule,
-    DropdownModule
+    DropdownModule,
+    CalendarModule
   ],
-  providers: [],
+  providers: [LoginService, LoggedInGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {

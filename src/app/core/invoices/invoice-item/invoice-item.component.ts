@@ -1,6 +1,6 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import {IInvoice} from "../shared/interfaces/IInvoice";
 import {DomSanitizer} from "@angular/platform-browser";
+import { IInvoice } from '../../../shared/interfaces/IInvoice';
 
 @Component({
   selector: 'invoice-item',

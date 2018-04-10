@@ -1,37 +1,36 @@
-import {Injectable} from "@angular/core";
-import {Http} from "@angular/http";
+import { Injectable } from "@angular/core";
+import { IEmployee } from "../interfaces/IEmployee";
+import { environment } from "../../../environments/environment";
+import { HttpClient } from "@angular/common/http";
 import "rxjs/add/operator/map";
-import {IEmployee} from "../interfaces/IEmployee";
-import {environment} from "../../../environments/environment";
-
 
 @Injectable()
 export class HttpService {
 
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
   }
 
   invoices() {
-    return this.http.get(`${environment.api}/invoices`).map(res => res.json());
+    return this.http.get(`${environment.api}/invoices`);
   }
 
   employees() {
-    return this.http.get(`${environment.api}/users`).map(res => res.json());
+    return this.http.get(`${environment.api}/users`);
   }
 
   addEmployee(data: IEmployee) {
-    return this.http.post('${environment.api}/user/add', data).map(res => res.json());
+    return this.http.post(`${environment.api}/user/add`, data);
   }
 
   updateEmployee(data: IEmployee) {
-    return this.http.post('${environment.api}/user/update', data).map(res => res.json());
+    return this.http.post(`${environment.api}/user/update`, data);
   }
 
   deleteEmployee(data: IEmployee) {
-    return this.http.post('${environment.api}/user/delete', data).map(res => res.json());
+    return this.http.post(`${environment.api}/user/delete`, data);
   }
 
   deleteInvoice(id: number) {
-    return this.http.post('${environment.api}/invoices/delete', {invoiceId: id}).map(res => res.json());
+    return this.http.post(`${environment.api}/invoices/delete`, { invoiceId: id });
   }
 }

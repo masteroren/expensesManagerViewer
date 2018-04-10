@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {HttpService} from "../shared/services/httpService";
-import {IEmployee} from "../shared/interfaces/IEmployee";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {SelectItem} from 'primeng/primeng';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { SelectItem } from 'primeng/primeng';
+import { IEmployee } from '../../shared/interfaces/IEmployee';
+import { HttpService } from '../../shared/services/httpService';
 
 @Component({
   selector: 'app-employees',
@@ -16,13 +16,13 @@ export class EmployeesComponent implements OnInit {
   departments: SelectItem[] = [{
     label: 'R&D',
     value: 'R&D'
-  },{
+  }, {
     label: 'UX',
     value: 'UX'
-  },{
+  }, {
     label: 'Graphics',
     value: 'Graphics'
-  },{
+  }, {
     label: 'Sales',
     value: 'Sales'
   }];

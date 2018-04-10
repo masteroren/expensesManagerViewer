@@ -7,6 +7,7 @@
   }
   .invoices-filter {
     display: flex;
+    padding: 10px;
 
     .btn-filter {
       margin-right: 10px;
@@ -15,7 +16,6 @@
 
     .filter-types {
       display: flex;
-      flex-direction: column;
       margin-right: 20px;
     }
   }

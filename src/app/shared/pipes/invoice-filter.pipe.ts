@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {IInvoice} from "../shared/interfaces/IInvoice";
+import { IInvoice } from '../interfaces/IInvoice';
 
 @Pipe({
   name: 'invoiceFilter'

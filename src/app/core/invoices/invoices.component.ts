@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IInvoice } from "../shared/interfaces/IInvoice";
-import { HttpService } from "../shared/services/httpService";
 import { DomSanitizer } from "@angular/platform-browser";
+import { IInvoice } from '../../shared/interfaces/IInvoice';
+import { HttpService } from '../../shared/services/httpService';
 
 @Component({
   selector: 'app-invoices',
