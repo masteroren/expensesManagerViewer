@@ -15,6 +15,7 @@ export class LoginComponent {
     this.loginService.canLogin(id).subscribe(user => {
       if (user) {
         this.loginService.isLoggedIn = true;
+        sessionStorage.setItem('user', JSON.stringify(user));
         this.route.navigate(['/invoices']);
       }
     })

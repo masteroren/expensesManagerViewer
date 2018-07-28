@@ -1,4 +1,4 @@
-import { LayoutComponent } from './core/layout/layout.component';
+import { LayoutComponent } from './layout/layout.component';
 import { LoginComponent } from './core/login/login.component';
 import { Route, RouterModule } from "@angular/router";
 import { NgModule } from "@angular/core";
@@ -19,7 +19,7 @@ export const appRoutes: Route[] = [
   {
     path: '',
     component: LayoutComponent,
-    canActivate: [LoggedInGuard],
+    // canActivate: [LoggedInGuard],
     children: [
       {
         path: 'invoices',
@@ -35,7 +35,7 @@ export const appRoutes: Route[] = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes, { useHash: true })
   ]
 })
 export class RouteModule {

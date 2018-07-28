@@ -1,3 +1,5 @@
+import { FilterType } from './../../shared/enums/filterType.enum';
+import { IDateRange } from './../../shared/components/month-picker/month-picker.component';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from "@angular/platform-browser";
 import { IInvoice } from '../../shared/interfaces/IInvoice';
@@ -8,38 +10,37 @@ import { HttpService } from '../../shared/services/httpService';
   templateUrl: './invoices.component.html',
   styleUrls: ['./invoices.component.scss']
 })
-export class InvoicesComponent implements OnInit {
-  title = 'הוצאות';
-  public invoices: IInvoice[];
-  private dt: Date = new Date();
+export class InvoicesComponent {
+  public invoices: IInvoice[] = [];
+  public dt: Date = new Date();
   public year: number;
   public month: number;
   private imageSrc: any;
-  public filterType: number;
-  private cols = [];
+  public filterType: string;
+  private cols = [
+    { field: 'empId', header: 'מספר עובד' },
+    { field: 'employeeName', header: 'שם עובד' },
+    { field: 'type', header: 'סוג' },
+    { field: 'amount', header: 'סכום' },
+    { field: '_InvoiceDate', header: 'תאריך הגשה' },
+    { field: '_InvoiceCreate', header: 'תאריך חשבונית' }
+  ]
   public imageContentToShow;
   public showImageDialogFlag = false;
+
+  private dateRange: IDateRange;
 
   constructor(private httpService: HttpService, private _domSanitizer: DomSanitizer) {
 
   }
 
-  ngOnInit() {
-    this.getInvoices();
-
-    this.cols = [
-      { field: 'empId', header: 'מספר עובד' },
-      { field: 'employeeName', header: 'שם עובד' },
-      { field: 'type', header: 'סוג' },
-      { field: 'amount', header: 'סכום' },
-      { field: '_InvoiceDate', header: 'תאריך הגשה' },
-      { field: '_InvoiceCreate', header: 'תאריך חשבונית' }
-    ]
+  onDateChanged(dateRange: IDateRange) {
+    this.dateRange = dateRange;
+    this.getInvoices(dateRange);
   }
 
-  onDateChanged(e) {
-    this.year = new Date(e).getFullYear();
-    this.month = new Date(e).getMonth() + 1;
+  onFilterChanged() {
+    this.getInvoices(this.dateRange);
   }
 
   getImage(imageData: string) {
@@ -60,13 +61,16 @@ export class InvoicesComponent implements OnInit {
     })
   }
 
-  getInvoices() {
-    this.httpService.invoices().subscribe((response: IInvoice[]) => {
-      response.forEach((item: IInvoice) => {
-        item._InvoiceDate = new Date(item.createDate).toLocaleDateString();
-        item._InvoiceCreate = new Date(item.invoiceDate).toLocaleDateString();
-      });
-      this.invoices = response;
+  getInvoices(dateRange?: IDateRange) {
+    this.httpService.invoices().subscribe((res: IInvoice[]) => {
+      switch (this.filterType) {
+        case "1":
+          this.invoices = res.filter(p => p.createDate >= dateRange.start && p.createDate <= dateRange.end);
+          break;
+        case "0":
+          this.invoices = res.filter(p => p.invoiceDate >= dateRange.start && p.invoiceDate <= dateRange.end);
+          break;
+      }
     });
   }
 
@@ -89,8 +93,6 @@ export class InvoicesComponent implements OnInit {
 
   processTableData(dataTable) {
     let csv = 'מספר עובד,שם עובד,סכום - חניה,סכום - כיבוד,סכום - אחר,סה"כ הוצאות,חודש הגשה,';
-
-    console.log(dataTable);
 
     let invoiceArr = dataTable.value.sort(function (val1, val2) {
       return val1.empId - val2.empId;

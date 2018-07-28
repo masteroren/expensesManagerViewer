@@ -1,0 +1,4 @@
+<div class="month-picker">
+    <p-dropdown [options]="months" [(ngModel)]="selectedMonth" (onChange)="dateChanged($event)"></p-dropdown>
+    <p-dropdown [options]="years" [(ngModel)]="selectedYear" (onChange)="dateChanged($event)"></p-dropdown>
+</div>

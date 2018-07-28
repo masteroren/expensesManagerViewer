@@ -1,40 +1,52 @@
 <div class="employees">
 
-  <div [formGroup]="form" class="ui-layout employee" ui-layout-align="space-between center">
+  <div [formGroup]="form" class="ui-layout employees__edit" ui-layout-align="space-between center">
     <label>
-      <div>מספר עובד<span class="astrik">*</span></div>
-      <input #firstName pInputText formControlName="id"/>
+      <div>מספר עובד
+        <span class="astrik">*</span>
+      </div>
+      <input #firstName pInputText formControlName="id" />
     </label>
     <label>
-      <div>שם פרטי<span class="astrik">*</span></div>
-      <input #lastName pInputText formControlName="firstName"/>
+      <div>שם פרטי
+        <span class="astrik">*</span>
+      </div>
+      <input #lastName pInputText formControlName="firstName" />
     </label>
     <label>
-      <div>שם משפחה<span class="astrik">*</span></div>
-      <input pInputText formControlName="lastName"/>
+      <div>שם משפחה
+        <span class="astrik">*</span>
+      </div>
+      <input pInputText formControlName="lastName" />
     </label>
     <label>
       <div>כתובת</div>
-      <input pInputText formControlName="address"/>
+      <input pInputText formControlName="address" />
     </label>
     <label>
       <div>נייד</div>
-      <input pInputText formControlName="phone"/>
+      <input pInputText formControlName="phone" />
     </label>
     <label>
       <div>מחלקה</div>
       <p-dropdown [options]="departments" formControlName="department"></p-dropdown>
     </label>
 
-    <button *ngIf="!editMode" pButton label="הוסף" (click)="addEmployee()"></button>
-    <button *ngIf="editMode" pButton label="עדכן" (click)="updateEmployee()"></button>
-    <button *ngIf="editMode" pButton label="מחק" (click)="deleteEmployee()"></button>
-    <button *ngIf="editMode" pButton label="בטל" (click)="returnToAdd()"></button>
+    <div class="employees__edit__actions">
+      <div *ngIf="!editMode">
+        <button pButton label="הוסף" (click)="addEmployee()"></button>
+      </div>
+      <div *ngIf="editMode">
+        <button pButton label="עדכן" (click)="updateEmployee()"></button>
+        <button pButton label="מחק" (click)="deleteEmployee()"></button>
+        <button pButton label="בטל" (click)="returnToAdd()"></button>
+      </div>
+    </div>
   </div>
 
-  <div class="employees-list">
-    <p-dataTable [value]="employees" scrollable="false" selectionMode="single" class="employees-table stretch-width"
-                 #employeesTable (onRowSelect)="onRowSelect($event)">
+  <div class="employees__list">
+    <p-dataTable [value]="employees" scrollable="false" selectionMode="single" class="employees-table stretch-width" #employeesTable
+      (onRowSelect)="onRowSelect($event)">
       <p-column field="id" header="מספר"></p-column>
       <p-column field="name" header="שם"></p-column>
       <p-column field="firstName" header="שם פרטי"></p-column>

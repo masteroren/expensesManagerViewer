@@ -1,28 +1,24 @@
 <div class="invoices-viewer">
-  <h1>{{title}}</h1>
+  <div class="invoices-viewer__filter">
+    <!-- <p-calendar class="invoice-date-picker" [(ngModel)]="dt" (onSelect)="onDateChanged($event)" dateFormat="dd/mm/yy"></p-calendar> -->
+    <month-picker (onDateChanged)="onDateChanged($event)"></month-picker>
 
-  <div class="invoices-filter">
-    <!-- <datepicker class="invoice-date-picker" [(ngModel)]="dt" minMode="month" maxMode="year" datepickerMode="month" (selectionDone)="onDateChanged($event)"></datepicker> -->
-    <p-calendar class="invoice-date-picker" [(ngModel)]="dt" (onSelect)="onDateChanged($event)" dateFormat="dd/mm/yy"></p-calendar>
-
-    <div class="filter-types">
+    <div class="invoices-viewer__filter__types">
       <label>
-        <input name="filterType" type="radio" value="0" [(ngModel)]="filterType">
+        <p-radioButton name="groupname" value="0" [(ngModel)]="filterType" (onClick)="onFilterChanged()"></p-radioButton>
         <span>תאריך הגשה</span>
       </label>
       <label>
-        <input name="filterType" type="radio" value="1" [(ngModel)]="filterType">
+        <p-radioButton name="groupname" value="1" [(ngModel)]="filterType" (onClick)="onFilterChanged()"></p-radioButton>
         <span>תאריך חשבונית</span>
       </label>
+
+      <button pButton label="ייצוא לאקסל" (click)="exportToCsv(invoicesTable)"></button>
+      <button pButton label="מחק" (click)="deleteInvoice(invoicesTable)"></button>
     </div>
   </div>
 
-  <div class="ui-space-regular">
-    <button class="primary-btn" (click)="exportToCsv(invoicesTable)">ייצוא לאקסל</button>
-    <button pButton class="secondary-btn" label="מחק" (click)="deleteInvoice(invoicesTable)"></button>
-  </div>
-
-  <div class="invoices-container ui-space-r-large">
+  <div class="invoices-viewer__content ui-space-r-large">
     <div class="invoices-list">
       <p-dataTable [value]="invoices | invoiceFilter: {month: month, year: year, type: filterType}" scrollable="false" class="details-table stretch-width"
         #invoicesTable>
@@ -31,8 +27,16 @@
         <p-column field="employeeName" header="שם עובד" [sortable]="true"></p-column>
         <p-column field="type" header="סוג" [sortable]="true"></p-column>
         <p-column field="amount" header="סכום" [sortable]="true"></p-column>
-        <p-column field="_InvoiceDate" header="תאריך הגשה" [sortable]="true"></p-column>
-        <p-column field="_InvoiceCreate" header="תאריך חשבונית" [sortable]="true"></p-column>
+        <p-column field="invoiceDate" header="תאריך הגשה" [sortable]="true">
+          <ng-template let-col let-invoice="rowData" pTemplate="body">
+            {{invoice[col.field] | date: 'dd/MM/yyyy'}}
+          </ng-template>
+        </p-column>
+        <p-column field="createDate" header="תאריך חשבונית" [sortable]="true">
+          <ng-template let-col let-invoice="rowData" pTemplate="body">
+            {{invoice[col.field] | date: 'dd/MM/yyyy'}}
+          </ng-template>
+        </p-column>
         <p-column field="image" header="צילום" [sortable]="true">
           <ng-template let-col let-invoice="rowData" pTemplate="body">
             <img #img class="pointer" [src]="getImage(invoice[col.field])" (click)="showImageDialog(img.src)">

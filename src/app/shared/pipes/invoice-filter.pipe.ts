@@ -1,4 +1,4 @@
-import {Pipe, PipeTransform} from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 import { IInvoice } from '../interfaces/IInvoice';
 
 @Pipe({
@@ -11,24 +11,24 @@ export class InvoiceFilterPipe implements PipeTransform {
     let month = args.month;
     let type = args.type;
 
-    if (year && month && type){
-      return invoices.filter(item=>{
+    if (year && month && type) {
+      return invoices.filter(item => {
 
         let invoiceYear: number;
         let invoiceMonth: number;
 
-        switch (type){
+        switch (type) {
           case '0':
             invoiceYear = new Date(item.createDate).getFullYear();
-            invoiceMonth = new Date(item.createDate).getMonth()+1;
+            invoiceMonth = new Date(item.createDate).getMonth() + 1;
             break;
           case '1':
             invoiceYear = new Date(item.invoiceDate).getFullYear();
-            invoiceMonth = new Date(item.invoiceDate).getMonth()+1;
+            invoiceMonth = new Date(item.invoiceDate).getMonth() + 1;
             break;
         }
 
-        if (invoiceYear == year && invoiceMonth == month){
+        if (invoiceYear == year && invoiceMonth == month) {
           return item;
         }
       });

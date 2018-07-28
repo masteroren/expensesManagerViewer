@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -8,7 +9,8 @@ import {
   DialogModule,
   InputTextModule,
   DropdownModule,
-  CalendarModule
+  CalendarModule,
+  RadioButtonModule
 } from 'primeng/primeng';
 import { AppComponent } from './app.component';
 import { RouteModule } from "./app-routing.module";
@@ -18,9 +20,11 @@ import { InvoiceItemComponent } from './core/invoices/invoice-item/invoice-item.
 import { InvoicesComponent } from './core/invoices/invoices.component';
 import { EmployeesComponent } from './core/employees/employees.component';
 import { LoginComponent } from './core/login/login.component';
-import { LayoutComponent } from './core/layout/layout.component';
+import { LayoutComponent } from './layout/layout.component';
 import { LoginService } from './shared/services/login.service';
 import { LoggedInGuard } from './shared/guards/logged-in.guard';
+import { MonthPickerComponent } from './shared/components/month-picker/month-picker.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -34,6 +38,7 @@ import { LoggedInGuard } from './shared/guards/logged-in.guard';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -44,7 +49,9 @@ import { LoggedInGuard } from './shared/guards/logged-in.guard';
     InputTextModule,
     ButtonModule,
     DropdownModule,
-    CalendarModule
+    CalendarModule,
+    RadioButtonModule,
+    SharedModule
   ],
   providers: [LoginService, LoggedInGuard],
   bootstrap: [AppComponent]

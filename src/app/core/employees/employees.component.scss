@@ -1,16 +1,31 @@
 .employees {
-  direction: rtl;
-  .astrik {
-    color: #bf0000;
-    margin-right: 2px;
-  }
-  .employee {
-    height: 60px;
-    margin: 20px;
-    padding: 5px;
-    background-color: #d9e1fa;
-  }
-  .employees-list {
-    margin: 20px;
-  }
+    direction: rtl;
+
+    .astrik {
+        color: #bf0000;
+        margin-right: 2px;
+    }
+
+    &__edit {
+        height: 80px;
+        margin: 10px;
+        padding: 5px;
+        background-color: #9696a0;  
+
+        label {
+            color: #fff;
+        }
+
+        input {
+          border-radius: 10px;
+        }
+
+        &__actions {
+            margin-top: 25px;
+        }
+    }
+
+    &__list {
+        margin: 20px;
+    }
 }

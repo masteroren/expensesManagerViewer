@@ -1,8 +1,10 @@
+import { Observable } from 'rxjs/Observable';
 import { Injectable } from "@angular/core";
 import { IEmployee } from "../interfaces/IEmployee";
 import { environment } from "../../../environments/environment";
 import { HttpClient } from "@angular/common/http";
 import "rxjs/add/operator/map";
+import { IInvoice } from '../interfaces/IInvoice';
 
 @Injectable()
 export class HttpService {
@@ -10,8 +12,8 @@ export class HttpService {
   constructor(private http: HttpClient) {
   }
 
-  invoices() {
-    return this.http.get(`${environment.api}/invoices`);
+  invoices(): Observable<IInvoice[]> {
+    return this.http.get<IInvoice[]>(`${environment.api}/invoices`);
   }
 
   employees() {

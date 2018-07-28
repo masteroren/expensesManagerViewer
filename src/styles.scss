@@ -4,3 +4,26 @@
 @import "styles/ui-helper";
 @import "styles/ui-flexbox";
 @import "styles/table";
+
+body {
+    direction: rtl;
+    font-family: 'Roboto';
+    font-size: 10px;
+}
+
+p-dropdown {
+    border-radius: 10px;
+}
+
+.ui-button {
+    background-color: rgb(72, 77, 72) !important;
+    color: #fff !important;
+    border-radius: 10px !important;
+    outline: none !important;
+    border-color: #fff !important;
+}
+
+.ui-radiobutton-box {
+    width: 1.2em !important;
+    height: 1.2em !important;
+}

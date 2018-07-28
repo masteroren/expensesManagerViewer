@@ -6,6 +6,4 @@ export interface IInvoice{
   invoiceDate: number;
   createDate: number;
   image: string;
-  _InvoiceDate?: string;
-  _InvoiceCreate?: string;
 }

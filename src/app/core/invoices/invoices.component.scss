@@ -1,84 +1,92 @@
 .invoices-viewer {
-  direction: rtl;
-  padding: 10px;
-
-  .invoice-date-picker {
-    direction: ltr;
-  }
-  .invoices-filter {
-    display: flex;
+    direction: rtl;
     padding: 10px;
 
-    .btn-filter {
-      margin-right: 10px;
-      height: 50px;
+    .invoice-date-picker {
+        direction: ltr;
     }
 
-    .filter-types {
-      display: flex;
-      margin-right: 20px;
-    }
-  }
-
-  .invoices-container {
-    display: flex;
-    justify-content: space-between;
-
-    .invoices-list {
-      width: calc(100% - 100px);
-      overflow-y: auto;
-      overflow-x: hidden;
-      height: 550px;
-
-      img {
-        width: 50px;
+    &__filter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         padding: 10px;
-      }
+        background-color: #9696a0;
 
-      table {
-        width: 100%;
-
-        tr {
-          th {
-            text-align: center;
-            background-color: lightslategray;
-            color: white;
-            border-color: black;
-          }
-          td {
-            padding-right: 10px;
-            &.center {
-              text-align: center;
-            }
-          }
+        .btn-filter {
+            margin-right: 10px;
+            height: 50px;
         }
-      }
+
+        &__types {
+            display: flex;
+            justify-content: space-around;
+            margin-right: 20px;
+            width: 600px;
+            align-items: center;
+        }
     }
-  }
+
+    &__content {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px;
+        padding: 0px !important;
+
+        .invoices-list {
+            overflow-y: auto;
+            overflow-x: hidden;
+            height: 550px;
+
+            img {
+                width: 50px;
+                padding: 10px;
+            }
+
+            table {
+                width: 100%;
+
+                tr {
+                    th {
+                        text-align: center;
+                        background-color: lightslategray;
+                        color: white;
+                        border-color: black;
+                    }
+
+                    td {
+                        &.center {
+                            text-align: center;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 .details-table {
-  width: 1200px;
-  display: inline-block;
+    width: 1200px;
+    display: inline-block;
 }
 
 //general classes
 .no-border {
-  border: 0 !important;
+    border: 0 !important;
 }
 
 .stretch-width {
-  width: 100%;
+    width: 100%;
 }
 
 .relative {
-  position: relative;
+    position: relative;
 }
 
 .middle {
-  vertical-align: middle;
+    vertical-align: middle;
 }
 
 .in-block {
-  display: inline-block;
+    display: inline-block;
 }

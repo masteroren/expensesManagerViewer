@@ -5,5 +5,5 @@ export interface IEmployee {
   lastName: string,
   address?: string,
   phone?: string,
-  isAdmin?: boolean
+  isAdmin?: number
 }

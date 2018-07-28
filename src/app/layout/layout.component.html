@@ -1,0 +1,18 @@
+<div class="expenses-manager">
+  <div class="expenses-manager__top-bar">
+    Expenses Viewer
+  </div>
+  <div class="expenses-manager__body">
+    <div class="expenses-manager__body__side-bar">
+      <<div>
+        <a [routerLink]="['/employees']" routerLinkActive="active">עובדים</a>
+    </div>>
+    <div>
+      <a [routerLink]="['/invoices']" routerLinkActive="active">חשבוניות/קבלות</a>
+    </div>
+  </div>
+  <div class="expenses-manager__body__content">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+</div>
